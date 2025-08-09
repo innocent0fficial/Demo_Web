@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Innocent 2.0 Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        #scene {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+        }
+        
+        .car {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            transition: all 0.5s ease;
+        }
+        
+        #car1 {
+            left: 20%;
+            top: 40%;
+            transform: rotate(30deg);
+        }
+        
+        #car2 {
+            right: 20%;
+            top: 40%;
+            transform: rotate(-30deg);
+        }
+        
+        #accident-image {
+            position: absolute;
+            width: 300px;
+            height: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 2s ease;
+            z-index: 10;
+        }
+        
+        #fire {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(ellipse at center, rgba(255,80,0,0.8) 0%, rgba(255,80,0,0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(5px);
+            z-index: 5;
+        }
+        
+        #welcome-text {
+            position: absolute;
+            color: white;
+            font-size: 3rem;
+            left: 50%;
+            top: 70%;
+            transform: translateX(-50%);
+            opacity: 0;
+            text-align: center;
+            text-shadow: 0 0 10px #ff5500;
+            transition: opacity 2s ease;
+            z-index: 20;
+        }
+        
+        .animate-crash {
+            animation: crash 1s forwards;
+        }
+        
+        @keyframes crash {
+            0% { transform: translateX(0) rotate(30deg); }
+            100% { transform: translateX(100px) rotate(0deg); }
+        }
+        
+        .animate-crash2 {
+            animation: crash2 1s forwards;
+        }
+        
+        @keyframes crash2 {
+            0% { transform: translateX(0) rotate(-30deg); }
+            100% { transform: translateX(-100px) rotate(0deg); }
+        }
+        
+        .fire-animate {
+            animation: fire 3s forwards;
+        }
+        
+        @keyframes fire {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="scene">
+        <img src="car1.png" alt="Car 1" class="car" id="car1">
+        <img src="car2.png" alt="Car 2" class="car" id="car2">
+        <div id="fire"></div>
+        <img src="https://github.com/Islamicquiz786/Newwwwwwwwwww/raw/main/%2B92%20349%206049312%2020250704_231344.jpg" alt="Portfolio" id="accident-image">
+        <h1 id="welcome-text">Welcome Innocent 2.0 Portfolio</h1>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start animation sequence
+            setTimeout(function() {
+                // Cars crash
+                document.getElementById('car1').classList.add('animate-crash');
+                document.getElementById('car2').classList.add('animate-crash2');
+                
+                // Show fire after crash
+                setTimeout(function() {
+                    const fire = document.getElementById('fire');
+                    fire.style.left = '50%';
+                    fire.style.top = '50%';
+                    fire.classList.add('fire-animate');
+                    
+                    // Show image after fire
+                    setTimeout(function() {
+                        document.getElementById('accident-image').style.opacity = '1';
+                        document.getElementById('accident-image').style.transform = 'translate(-50%, -50%) scale(1)';
+                        
+                        // Show welcome text after image appears
+                        setTimeout(function() {
+                            document.getElementById('welcome-text').style.opacity = '1';
+                            
+                            // Optional: Make image pulse
+                            setInterval(function() {
+                                const img = document.getElementById('accident-image');
+                                img.style.transform = 'translate(-50%, -50%) scale(1.05)';
+                                setTimeout(function() {
+                                    img.style.transform = 'translate(-50%, -50%) scale(1)';
+                                }, 500);
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
